@@ -205,6 +205,28 @@ header{background:rgba(4,34,26,.86)}
 .faq{background:#fff}
 footer{background:#021710}
 .dock .btn-green{background:var(--deep)}
+
+/* photo layer */
+.hero{background:#04221a url("https://images.unsplash.com/photo-1663811396777-05505d999151?w=1600&q=72&auto=format&fit=crop") center/cover no-repeat}
+.hero::before{inset:0;height:auto;background:linear-gradient(270deg,rgba(2,20,14,.94) 0%,rgba(2,20,14,.82) 42%,rgba(2,20,14,.45) 75%,rgba(2,20,14,.6) 100%)}
+.hero::after{display:none}
+.pg{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.pc{position:relative;border:0;padding:0;cursor:pointer;border-radius:20px;overflow:hidden;aspect-ratio:3/4;background:#0b1f17;text-align:start;font:inherit;color:#fff;box-shadow:0 18px 40px -22px rgba(4,34,26,.55)}
+.pc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.pc::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 35%,rgba(2,20,14,.92) 100%)}
+.pc:hover img{transform:scale(1.06)}
+.pc span{position:absolute;inset:auto 16px 16px 16px;z-index:1;display:block}
+.pc b{display:block;font-size:20px;line-height:1.3}
+.pc small{display:block;font-size:13.5px;color:#e7d7ad;margin-top:4px}
+.pc[aria-pressed=true]{outline:3px solid var(--label);outline-offset:3px}
+.pests-band{padding-block:clamp(48px,6vw,80px) 0}
+.pests-band p.sub{color:var(--muted);margin:10px 0 24px;max-width:56ch}
+.consult{background:#04221a url("https://images.unsplash.com/photo-1564540586988-aa4e53c3d799?w=1600&q=72&auto=format&fit=crop") center/cover no-repeat;position:relative}
+.consult::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(2,20,14,.75),rgba(2,20,14,.93) 60%)}
+.consult .wrap{position:relative}
+.credit{font-size:12.5px;opacity:.7;margin-top:8px}
+@media (max-width:980px){.pg{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:600px){.pg{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;padding-bottom:6px;scrollbar-width:none}.pg::-webkit-scrollbar{display:none}.pc{flex:0 0 62%;scroll-snap-align:start}.hero::before{background:linear-gradient(180deg,rgba(2,20,14,.88),rgba(2,20,14,.93))}}
 @media (max-width:980px){
   .trust ul{grid-template-columns:repeat(2,minmax(0,1fr))}
   .consult .wrap,.safe .wrap{grid-template-columns:minmax(0,1fr)}
@@ -289,6 +311,20 @@ footer{background:#021710}
   </ul>
 </section>
 
+<section class="pests-band" aria-labelledby="pb-t">
+  <div class="wrap">
+    <h2 id="pb-t">وش الحشرة اللي عندك؟</h2>
+    <p class="sub">اضغط على الصورة ونعرض لك المنتجات المناسبة لها مباشرة.</p>
+    <div class="pg">
+      <button type="button" class="pc pest-pic" data-k="roach" aria-pressed="false"><img loading="lazy" src="https://images.unsplash.com/photo-1759379077720-b099c6cf2f71?w=700&q=72&auto=format&fit=crop" alt="صرصور"><span><b>صراصير</b><small>جل وطعوم وبودرة</small></span></button>
+      <button type="button" class="pc pest-pic" data-k="ant" aria-pressed="false"><img loading="lazy" src="https://images.unsplash.com/photo-1733930097766-25cf51cc7249?w=700&q=72&auto=format&fit=crop" alt="نملة"><span><b>نمل</b><small>حبيبات وجل وأظرف</small></span></button>
+      <button type="button" class="pc pest-pic" data-k="fly" aria-pressed="false"><img loading="lazy" src="https://images.unsplash.com/photo-1707943768453-7850f916ebde?w=700&q=72&auto=format&fit=crop" alt="بعوضة على الجلد"><span><b>بعوض وذباب</b><small>رش ومساحيق</small></span></button>
+      <button type="button" class="pc pest-pic" data-k="bed" aria-pressed="false"><img loading="lazy" src="https://images.unsplash.com/photo-1727198634627-645ef5356455?w=700&q=72&auto=format&fit=crop" alt="بقة الفراش"><span><b>بق الفراش</b><small>بودرة ورش سطحي</small></span></button>
+      <button type="button" class="pc pest-pic" data-k="rat" aria-pressed="false"><img loading="lazy" src="https://images.unsplash.com/photo-1718345641213-80cfe1424084?w=700&q=72&auto=format&fit=crop" alt="فأر"><span><b>فئران</b><small>طعوم جاهزة</small></span></button>
+    </div>
+  </div>
+</section>
+
 <section class="band" id="shop">
   <div class="wrap">
     <div class="head">
@@ -352,7 +388,7 @@ footer{background:#021710}
 
 <footer>
   <div class="wrap">
-    <div><b style="color:#fff">جذرة للأسمدة والمبيدات</b><br>الرياض، المملكة العربية السعودية</div>
+    <div><b style="color:#fff">جذرة للأسمدة والمبيدات</b><br>الرياض، المملكة العربية السعودية<div class="credit">صور الحشرات والمطبخ من Unsplash</div></div>
     <div>واتساب: <a href="https://wa.me/966501211056" target="_blank" rel="noopener" dir="ltr">+966 50 121 1056</a><br><a href="https://jothrah.com/ar?utm_source=landing&amp;utm_medium=social&amp;utm_campaign=public_health">jothrah.com</a></div>
   </div>
 </footer>
@@ -392,7 +428,7 @@ groups.forEach(g=>g.innerHTML=PESTS.map(([k,v])=>`<button type="button" class="p
 let cur='all';
 function apply(k){
   cur=k;
-  document.querySelectorAll('.pest').forEach(b=>b.setAttribute('aria-pressed',b.dataset.k===k));
+  document.querySelectorAll('.pest,.pest-pic').forEach(b=>b.setAttribute('aria-pressed',b.dataset.k===k));
   let n=0;
   grid.querySelectorAll('.card').forEach(c=>{const on=k==='all'||c.dataset.t.split(' ').includes(k);c.hidden=!on;if(on)n++});
   empty.style.display=n?'none':'block';
@@ -403,7 +439,7 @@ function choose(k,fromHero){
   if(document.startViewTransition&&!reduce&&!fromHero)document.startViewTransition(run);else run();
   if(fromHero)document.getElementById('shop').scrollIntoView({behavior:reduce?'auto':'smooth'});
 }
-document.addEventListener('click',e=>{const b=e.target.closest('.pest');if(!b)return;choose(b.dataset.k,!!b.closest('.hero'))});
+document.addEventListener('click',e=>{const b=e.target.closest('.pest,.pest-pic');if(!b)return;choose(b.dataset.k,!!b.closest('.hero,.pests-band'))});
 }
 </script>
 </body>
