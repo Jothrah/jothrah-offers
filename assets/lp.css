@@ -95,7 +95,8 @@ section h2{font-size:clamp(24px,3.2vw,32px);font-weight:800;margin-bottom:18px}
  .hero-art{order:-1}
  .hero-art img{width:min(210px,58%)}
  .hero-art figcaption{display:none}
- .halo{inset:2% 18% 2%}
+ .hero-art{padding:18px 0 6px}
+ .halo{inset:auto;left:50%;top:50%;width:250px;height:250px;transform:translate(-50%,-50%)}
  .hero h1{font-size:clamp(32px,9vw,44px)}
  .how ol{grid-template-columns:1fr}
  .consult{flex-direction:column;align-items:flex-start}
