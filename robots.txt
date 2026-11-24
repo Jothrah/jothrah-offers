@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /raw/
+Sitemap: https://offers.jothrah.com/sitemap.xml
