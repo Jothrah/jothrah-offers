@@ -28,7 +28,7 @@ main{max-width:1120px;margin:0 auto;padding:0 20px}
 
 .hero-art{position:relative;margin:0;display:flex;flex-direction:column;align-items:center}
 .halo{position:absolute;inset:6% 6% 14%;border-radius:50%;background:radial-gradient(circle,#fff 0 55%,#e2eee5 56% 70%,transparent 71%);}
-.hero-art img{position:relative;width:min(440px,90%);aspect-ratio:1;object-fit:contain;mix-blend-mode:multiply;animation:rise .9s cubic-bezier(.2,.9,.3,1) both}
+.hero-art img{position:relative;width:min(440px,90%);height:auto;aspect-ratio:1;object-fit:contain;mix-blend-mode:multiply;animation:rise .9s cubic-bezier(.2,.9,.3,1) both}
 .hero-art figcaption{position:relative;margin-top:6px;font-size:13px;color:var(--muted);text-align:center}
 @keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 
@@ -75,7 +75,7 @@ section h2{font-size:clamp(24px,3.2vw,32px);font-weight:800;margin-bottom:18px}
 .more-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
 .more-card{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px;text-decoration:none;transition:border-color .2s}
 .more-card:hover{border-color:var(--leaf)}
-.more-card img{width:64px;height:64px;object-fit:contain;border-radius:10px;background:#f6f8f6}
+.more-card img{width:64px;height:64px!important;object-fit:contain;border-radius:10px;background:#f6f8f6}
 .more-card span{display:flex;flex-direction:column}
 .more-card b{font-size:15px}
 .more-card small{color:var(--muted);font-size:13px}
