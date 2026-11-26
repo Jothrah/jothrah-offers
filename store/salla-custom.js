@@ -490,6 +490,14 @@ var k=0,iv=setInterval(function(){if((hdr()&&foot())||++k>60)clearInterval(iv)},
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function txt(el) { return (el && el.textContent || '').replace(/\s+/g, ' ').trim(); }
 
+  /* «يكافح» للمبيدات، «يعالج» للأسمدة، «مناسب لـ» للبذور — حسب مسار التصنيف */
+  function pestLabel() {
+    var crumb = txt(document.querySelector('nav.breadcrumbs, .breadcrumbs, salla-breadcrumb, [class*=breadcrumb]')) + ' ' + txt(document.querySelector('.main-categoty'));
+    if (/سماد|أسمدة|اسمدة/.test(crumb)) return 'يعالج:';
+    if (/بذور|بذرة/.test(crumb)) return 'مناسب لـ:';
+    return 'يكافح:';
+  }
+
   function build() {
     if (!document.body.classList.contains('product-single')) return true;
     var lay = document.querySelector('.product__description .jth-product-layout') || document.querySelector('.jth-product-layout');
@@ -526,7 +534,7 @@ var k=0,iv=setInterval(function(){if((hdr()&&foot())||++k>60)clearInterval(iv)},
     var MAXP = 5;
     box.innerHTML = '<div class="jqf-hd"><b>نظرة سريعة</b><a role="button" tabindex="0" class="jqf-more">التفاصيل الكاملة</a></div>'
       + (specs.length ? '<div class="jqf-specs">' + specs.map(function (s) { return '<div class="jqf-spec"><small>' + esc(s.k) + '</small><span>' + esc(s.v) + '</span></div>'; }).join('') + '</div>' : '')
-      + (pests.length ? '<div class="jqf-pests"><small>يكافح:</small>' + pests.slice(0, MAXP).map(function (p) { return '<span class="jqf-chip"' + (p.e ? ' data-e="' + p.e + '"' : '') + '>' + esc(p.t) + '</span>'; }).join('') + (pests.length > MAXP ? '<span class="jqf-chip more">+' + (pests.length - MAXP) + '</span>' : '') + '</div>' : '')
+      + (pests.length ? '<div class="jqf-pests"><small>' + pestLabel() + '</small>' + pests.slice(0, MAXP).map(function (p) { return '<span class="jqf-chip"' + (p.e ? ' data-e="' + p.e + '"' : '') + '>' + esc(p.t) + '</span>'; }).join('') + (pests.length > MAXP ? '<span class="jqf-chip more">+' + (pests.length - MAXP) + '</span>' : '') + '</div>' : '')
       + (document.querySelector('.jpl-trust') ? '' : '<div class="jqf-trust"><span><i data-e="✓"></i>مسجل رسمياً</span><span><i data-e="🚚"></i>توصيل لجميع المدن</span><span><i data-e="💳"></i>قسّطها مع تمارا وMISPAY</span></div>');
     price.parentNode.insertBefore(box, price.nextSibling);
 
