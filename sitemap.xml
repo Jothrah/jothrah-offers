@@ -10,4 +10,5 @@
 <url><loc>https://offers.jothrah.com/bed-bugs/</loc></url>
 <url><loc>https://offers.jothrah.com/all-insects/</loc></url>
 <url><loc>https://offers.jothrah.com/aphids/</loc></url>
+  <url><loc>https://offers.jothrah.com/booking/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>
