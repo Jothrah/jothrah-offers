@@ -377,7 +377,7 @@ window.__JTH_CHAT_V2_ON__=true;(function(){if(document.getElementById("jth-chat-
 /* JTHRAH_PRODUCT_LANDING_END */
 
 /* JTHRAH_HOME_V2_START v1 — الواجهة الجديدة للصفحة الرئيسية من offers.jothrah.com/store/home-v2.js (للرجوع احذف هذا البلوك و JTHRAH_HOME_V2_HIDE في CSS) */
-(function(){if(!/^\/(ar|en)?\/?$/.test(location.pathname))return;var s=document.createElement('script');s.src='https://offers.jothrah.com/store/home-v2.js?v=3';s.async=true;s.onerror=function(){document.body.classList.add('jth-v2-off')};(document.head||document.documentElement).appendChild(s);})();
+(function(){if(!/^\/(ar|en)?\/?$/.test(location.pathname))return;var s=document.createElement('script');s.src='https://offers.jothrah.com/store/home-v2.js?v=4';s.async=true;s.onerror=function(){document.body.classList.add('jth-v2-off')};(document.head||document.documentElement).appendChild(s);})();
 /* JTHRAH_HOME_V2_END */
 
 /* JTHRAH_SITE_V2_START — هيدر وفوتر الثيم الجديد لكل الصفحات (للرجوع: احذف هذا البلوك وبلوكات SITE_V2 في CSS) */
@@ -412,10 +412,19 @@ function foot(){
  document.body.classList.add('jth-foot-on');
  return true;
 }
-function run(){document.body.classList.add('jth-site');hdr();foot();}
+function aiq(){
+ if(!document.body.classList.contains('product-single')||document.querySelector('.jth-askai'))return;
+ var pr=document.querySelector('.main-content .price');if(!pr)return;
+ var h1=document.querySelector('.main-content h1');var name=h1?h1.textContent.trim():'';
+ var d=document.createElement('div');d.className='jth-askai';
+ d.innerHTML='<span class="jth-askai-i" aria-hidden="true"><svg viewBox="0 0 120 120" width="30" height="30"><rect x="22" y="34" width="76" height="60" rx="20" fill="#fff" stroke="#0b2e1f" stroke-width="6"/><path d="M60 34V20" stroke="#0b2e1f" stroke-width="6" stroke-linecap="round"/><circle cx="60" cy="16" r="7" fill="#0b2e1f"/><circle cx="46" cy="62" r="7" fill="#0b2e1f"/><circle cx="74" cy="62" r="7" fill="#0b2e1f"/><path d="M48 78q12 9 24 0" fill="none" stroke="#0b2e1f" stroke-width="6" stroke-linecap="round"/></svg></span><span class="jth-askai-t"><b>محتار هل يناسب مشكلتك؟</b><small>اسأل مساعد جذرة الذكي ويرد عليك فوراً، وإذا احتجت مهندس زراعي يحوّلك له.</small></span><button type="button" class="jth-askai-b">اسأل المساعد</button>';
+ d.querySelector('button').addEventListener('click',function(){var C=window.JothrahChat,q='عندي سؤال عن '+name+': هل يناسب مشكلتي وكيف أستخدمه؟';if(C&&C.ask)C.ask(q);else location.href='https://wa.me/966501211056?text='+encodeURIComponent(q)});
+ pr.parentNode.insertBefore(d,pr.nextSibling);
+}
+function run(){document.body.classList.add('jth-site');hdr();foot();aiq();}
 if(document.body)run();
 document.addEventListener('DOMContentLoaded',run);
-window.addEventListener('load',function(){hdr();foot();var r=function(){fill(document.getElementById('jth-foot'),document.querySelector('footer.store-footer'))};r();setTimeout(r,2500)});
+window.addEventListener('load',function(){hdr();foot();aiq();var r=function(){fill(document.getElementById('jth-foot'),document.querySelector('footer.store-footer'))};r();setTimeout(r,2500)});
 var k=0,iv=setInterval(function(){if((hdr()&&foot())||++k>60)clearInterval(iv)},100);
 })();
 /* JTHRAH_SITE_V2_END */
