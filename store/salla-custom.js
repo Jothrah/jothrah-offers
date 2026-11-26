@@ -428,3 +428,120 @@ window.addEventListener('load',function(){hdr();foot();aiq();var r=function(){fi
 var k=0,iv=setInterval(function(){if((hdr()&&foot())||++k>60)clearInterval(iv)},100);
 })();
 /* JTHRAH_SITE_V2_END */
+
+/* جذرة — تحسين صفحة المنتج (كل المنتجات)
+ * الأيقونات كلها تُرسم بالـ CSS (::before) فما تدخل في نص الصفحة ولا تأثر على قوقل
+ * 1) «نظرة سريعة» تحت السعر: أهم المواصفات + الآفات المستهدفة + شارات الثقة
+ * 2) ترتيب وصف المنتج: الآفات كشارات، المعلومات كجدول مواصفات، الاستخدام بخطوات مرقمة، السلامة ببطاقة تنبيه
+ * يقرأ البيانات من وصف المنتج نفسه (jth-product-*) — ما يضيف أي معلومة من عنده */
+(function () {
+  if (window.__jthPdp2) return;
+  window.__jthPdp2 = 1;
+
+  var CSS = ''
+    /* ===== نظرة سريعة ===== */
+    + '.jqf{margin:10px 0 4px;background:#fff;border:1px solid #e3ece6;border-radius:16px;padding:14px;color:#0b2e1f;font-family:inherit}'
+    + '.jqf-hd{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}'
+    + '.jqf-hd b{font-size:15px;font-weight:800}'
+    + '.jqf-hd a{font-size:13px;font-weight:700;color:#0b2e1f!important;text-decoration:underline!important;text-underline-offset:3px;cursor:pointer}'
+    + '.jqf-specs{display:grid;grid-template-columns:1fr 1fr;gap:8px}'
+    + '.jqf-spec{background:#f5f8f6;border-radius:12px;padding:9px 11px;min-width:0}'
+    + '.jqf-spec small{display:block;font-size:12px;color:#5f7a6c;font-weight:600;line-height:1.5}'
+    + '.jqf-spec span{display:block;font-size:14px;font-weight:800;line-height:1.5;overflow-wrap:anywhere}'
+    + '.jqf-pests{margin-top:10px;display:flex;flex-wrap:wrap;align-items:center;gap:6px}'
+    + '.jqf-pests>small{font-size:13px;font-weight:700;color:#5f7a6c;margin-inline-end:2px}'
+    + '.jqf-chip{display:inline-flex;align-items:center;gap:5px;background:#0b2e1f;color:#fff;border-radius:999px;padding:6px 11px;font-size:13px;font-weight:700;line-height:1.3}'
+    + '.jqf-chip.more{background:#e2b64c;color:#0b2e1f}.jqf-chip[data-e]::before,.jqf-trust i[data-e]::before{content:attr(data-e)}'
+    + '.jqf-trust{margin-top:12px;padding-top:12px;border-top:1px dashed #d6e3db;display:flex;flex-wrap:wrap;gap:6px 14px}'
+    + '.jqf-trust span{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:#173f2e}'
+    + '.jqf-trust i{font-style:normal;width:22px;height:22px;border-radius:7px;background:#e6f0ea;display:grid;place-items:center;font-size:12px}'
+    + '@media (max-width:380px){.jqf-specs{grid-template-columns:1fr}}'
+    /* ===== وصف المنتج ===== */
+    + '.jth-product-layout{color:#0b2e1f}.jth-product-layout p,.jth-product-layout li,.jth-product-layout span{text-justify:auto!important}.jth-product-layout p,.jth-product-layout li{text-align:right!important}'
+    + '.jth-product-layout>br,.jth-product-pests>br,.jth-product-info>br,.jth-product-row>br,.jth-product-safety>br,.jth-product-methods br,.jth-product-methods>br{display:none!important}.jth-product-layout .jth-product-methods>li>span,.jth-product-layout .jth-product-methods>li>p{display:block;margin:0!important}'
+    + '.jth-product-layout .jth-product-description{font-size:15px;line-height:1.95;margin:0 0 6px;text-align:right!important;text-justify:auto!important;letter-spacing:0!important;word-spacing:normal!important}'
+    + '.jth-product-layout .jth-product-title{font-size:17px!important;font-weight:800!important;color:#0b2e1f!important;margin:24px 0 12px!important;padding:0 12px 0 0!important;border-right:4px solid #e2b64c;line-height:1.5!important;text-align:right!important}'
+    + '.jth-product-layout .jth-product-pests{display:flex!important;flex-wrap:wrap!important;gap:8px!important;grid-template-columns:none!important;margin:0!important}'
+    + '.jth-product-layout .jth-product-pest{display:inline-flex!important;align-items:center;gap:6px;width:auto!important;margin:0!important;background:#eef5f0!important;border:1px solid #d6e3db!important;color:#0b2e1f!important;border-radius:999px!important;padding:8px 14px!important;font-size:14px!important;font-weight:700!important;line-height:1.3!important;text-align:right!important;box-shadow:none!important}'
+    + '.jth-product-layout .jth-product-pest[data-e]::before{content:attr(data-e);font-size:15px}'
+    + '.jth-product-layout .jth-product-info{display:grid!important;grid-template-columns:1fr 1fr;border:1px solid #e3ece6!important;border-radius:14px!important;overflow:hidden;background:#fff!important;padding:0!important;gap:0!important;margin:0!important;box-shadow:none!important}'
+    + '.jth-product-layout .jth-product-row{display:flex!important;flex-direction:column;gap:2px;padding:10px 14px!important;margin:0!important;border:0!important;border-bottom:1px solid #eef3f0!important;background:#fff!important;text-align:right!important}'
+    + '.jth-product-layout .jth-product-row:nth-child(4n+1),.jth-product-layout .jth-product-row:nth-child(4n+2){background:#f7faf8!important}'
+    + '.jth-product-layout .jth-product-row strong{font-size:12.5px!important;font-weight:600!important;color:#5f7a6c!important}'
+    + '.jth-product-layout .jth-product-row span{font-size:14.5px!important;font-weight:700!important;color:#0b2e1f!important}'
+    + '.jth-product-layout ol.jth-product-methods,.jth-product-layout ul.jth-product-methods{list-style:none!important;counter-reset:jm;padding:0!important;margin:0!important;display:flex;flex-direction:column;gap:8px}'
+    + '.jth-product-layout .jth-product-methods>li{counter-increment:jm;position:relative;background:#fff;border:1px solid #e3ece6;border-radius:12px;padding:10px 46px 10px 12px!important;margin:0!important;font-size:14.5px;line-height:1.8;list-style:none!important;display:block!important;text-align:right!important}'
+    + '.jth-product-layout .jth-product-methods>li::before{content:counter(jm);position:absolute;right:10px;top:10px;width:26px;height:26px;border-radius:50%;background:#e2b64c;color:#0b2e1f;font-weight:800;font-size:13px;display:grid;place-items:center}'
+    + '.jth-product-layout .jth-product-safety{background:#fff7e3!important;border:1px solid #f0d9a0!important;border-right:4px solid #e2b64c!important;border-radius:14px!important;padding:14px 16px!important;margin:22px 0 0!important;color:#3d3216!important}'
+    + '.jth-product-layout .jth-product-safety-title{font-weight:800!important;font-size:15.5px!important;color:#5c4510!important;margin-bottom:6px!important}'
+    + '.jth-product-layout .jth-product-safety p{margin:6px 0 0!important;font-size:14px!important;line-height:1.9!important}'
+    + '@media (max-width:640px){.jth-product-layout .jth-product-info{grid-template-columns:1fr}.jth-product-layout .jth-product-row{flex-direction:row;justify-content:space-between;align-items:baseline;gap:10px}.jth-product-layout .jth-product-row:nth-child(n){background:#fff!important}.jth-product-layout .jth-product-row:nth-child(odd){background:#f7faf8!important}.jth-product-layout .jth-product-row span{text-align:left}}';
+
+  var EMOJI = [
+    [/نمل|أرضة|ارضة/, '🐜'], [/صرص|صراص/, '🪳'], [/(^|\s)(ال)?بق(\s|$)|قمل/, '🪲'], [/عقرب|عقارب/, '🦂'], [/عنكب|عناكب/, '🕷️'],
+    [/بعوض|ناموس/, '🦟'], [/ذباب|ذبابة/, '🪰'], [/فئر|فأر|قوارض|جرذ/, '🐀'], [/برغوث|براغيث|قراد/, '🦗'],
+    [/فطر|بياض|عفن|تبقع|صدأ|لفحة|ذبول/, '🍄'], [/حشائش|أعشاب|اعشاب/, '🌾'], [/اصفرار|نقص|شحوب/, '🍂'],
+    [/(^|\s)(ال)?من(\s|$)|تربس|حلم|أكاروس|حشرات/, '🐞'], [/نيماتود/, '🪱'], [/سوس/, '🐛']
+  ];
+  function emojiFor(t) { for (var i = 0; i < EMOJI.length; i++) if (EMOJI[i][0].test(t)) return EMOJI[i][1]; return ''; }
+
+  var SPEC_ORDER = [/المادة الفعالة|المواد الفعالة/, /التركيز/, /الهيئة|التركيبة/, /نوع (المبيد|السماد|المنتج)/, /حجم العبوة|وزن العبوة|العبوة/, /بلد (الصنع|الإنتاج|المنشأ)/];
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function txt(el) { return (el && el.textContent || '').replace(/\s+/g, ' ').trim(); }
+
+  function build() {
+    if (!document.body.classList.contains('product-single')) return true;
+    var lay = document.querySelector('.product__description .jth-product-layout') || document.querySelector('.jth-product-layout');
+    if (!document.getElementById('jqf-css')) {
+      var st = document.createElement('style'); st.id = 'jqf-css'; st.textContent = CSS; document.head.appendChild(st);
+    }
+    /* «MISPAY» بالإنجليزي في شارات المنتجات المخصصة */
+    document.querySelectorAll('.jpl-trust span').forEach(function (s) { if (/مسباي/.test(s.textContent)) s.textContent = s.textContent.replace(/مسباي/g, 'MISPAY'); });
+
+    var price = document.querySelector('.main-content .price');
+    if (!price) return false;
+    if (!lay) return true;
+
+    var pests = [].map.call(lay.querySelectorAll('.jth-product-pest'), function (p) {
+      var t = txt(p); var e = emojiFor(t); if (e) p.setAttribute('data-e', e); return { t: t, e: e };
+    }).filter(function (p) { return p.t; });
+
+    var rows = [].map.call(lay.querySelectorAll('.jth-product-row'), function (r) {
+      return { k: txt(r.querySelector('strong')).replace(/[:：]\s*$/, ''), v: txt(r.querySelector('span')) };
+    }).filter(function (r) { return r.k && r.v; });
+
+    if (document.querySelector('.jqf')) return true;
+    var specs = [];
+    SPEC_ORDER.forEach(function (re) {
+      if (specs.length >= 4) return;
+      var r = rows.find(function (x) { return re.test(x.k) && specs.indexOf(x) < 0; });
+      if (r) specs.push(r);
+    });
+    if (!specs.length && !pests.length) return true;
+
+    var box = document.createElement('section');
+    box.className = 'jqf';
+    box.setAttribute('aria-label', 'نظرة سريعة على المنتج');
+    var MAXP = 5;
+    box.innerHTML = '<div class="jqf-hd"><b>نظرة سريعة</b><a role="button" tabindex="0" class="jqf-more">التفاصيل الكاملة</a></div>'
+      + (specs.length ? '<div class="jqf-specs">' + specs.map(function (s) { return '<div class="jqf-spec"><small>' + esc(s.k) + '</small><span>' + esc(s.v) + '</span></div>'; }).join('') + '</div>' : '')
+      + (pests.length ? '<div class="jqf-pests"><small>يكافح:</small>' + pests.slice(0, MAXP).map(function (p) { return '<span class="jqf-chip"' + (p.e ? ' data-e="' + p.e + '"' : '') + '>' + esc(p.t) + '</span>'; }).join('') + (pests.length > MAXP ? '<span class="jqf-chip more">+' + (pests.length - MAXP) + '</span>' : '') + '</div>' : '')
+      + (document.querySelector('.jpl-trust') ? '' : '<div class="jqf-trust"><span><i data-e="✓"></i>مسجل رسمياً</span><span><i data-e="🚚"></i>توصيل لجميع المدن</span><span><i data-e="💳"></i>قسّطها مع تمارا وMISPAY</span></div>');
+    price.parentNode.insertBefore(box, price.nextSibling);
+
+    var more = box.querySelector('.jqf-more');
+    function go() {
+      var tab = [].find.call(document.querySelectorAll('salla-tab-header, .s-tabs-header-item, [role=tab]'), function (t) { return /التفاصيل/.test(t.textContent); });
+      try { if (tab) tab.click(); } catch (e) {}
+      var y = lay.getBoundingClientRect().top + window.scrollY - 90;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+    more.addEventListener('click', go);
+    more.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+    return true;
+  }
+
+  var tries = 0;
+  (function loop() { if (build() || ++tries > 40) return; setTimeout(loop, 250); })();
+})();
