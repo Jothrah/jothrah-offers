@@ -11,16 +11,20 @@ function hdr(){
  if(sb&&!sb.querySelector('.jth-hsearch-t')){var t=document.createElement('span');t.className='jth-hsearch-t';t.textContent='ابحث عن منتج أو حشرة…';sb.insertBefore(t,sb.firstChild)}
  return true;
 }
+function fill(f,nf){
+ if(!f||!nf)return;
+  var b=f.querySelector('.jf-badges');
+  [].forEach.call(nf.querySelectorAll('img'),function(im){var a=(im.alt||'');if(/العمل الحر|منصة الأعمال/.test(a)&&!b.querySelector('img[alt="'+a+'"]')){var el=im.closest('a')||im;var c=el.cloneNode(true);if(c.tagName==='A'){c.target='_blank';c.rel='noopener'}[].forEach.call(c.tagName==='IMG'?[c]:c.querySelectorAll('img'),function(x){var ds=x.getAttribute('data-src');if(ds)x.src=ds;x.className='';x.style.opacity='1'});b.appendChild(c)}});
+  var pays=[].filter.call(nf.querySelectorAll('img'),function(im){return /_mini\.png/.test(im.getAttribute('data-src')||im.src)});
+  if(pays.length){var pr=f.querySelector('.jf-pays');pr.innerHTML='';pays.forEach(function(im){var c=document.createElement('img');c.src=im.getAttribute('data-src')||im.src;c.alt=im.alt||'';c.loading='lazy';pr.appendChild(c)})}
+}
 function foot(){
  if(document.getElementById('jth-foot'))return true;
  var nf=document.querySelector('footer.store-footer');var host=document.querySelector('.app-inner');
  if(!nf&&!host)return false;
  var w=document.createElement('div');w.innerHTML=FOOT;var f=w.firstChild;
  if(nf){
-  var b=f.querySelector('.jf-badges');
-  [].forEach.call(nf.querySelectorAll('img'),function(im){var a=(im.alt||'');if(/العمل الحر|منصة الأعمال/.test(a)&&!b.querySelector('img[alt="'+a+'"]')){var el=im.closest('a')||im;var c=el.cloneNode(true);if(c.tagName==='A'){c.target='_blank';c.rel='noopener'}[].forEach.call(c.tagName==='IMG'?[c]:c.querySelectorAll('img'),function(x){var ds=x.getAttribute('data-src');if(ds)x.src=ds;x.className='';x.style.opacity='1'});b.appendChild(c)}});
-  var pays=[].filter.call(nf.querySelectorAll('img'),function(im){return /_mini\.png/.test(im.src)});
-  if(pays.length){var pr=f.querySelector('.jf-pays');pr.innerHTML='';pays.forEach(function(im){var c=document.createElement('img');c.src=im.src;c.alt=im.alt||'';c.loading='lazy';pr.appendChild(c)})}
+  fill(f,nf);
   nf.parentNode.insertBefore(f,nf);
  }else host.appendChild(f);
  document.body.classList.add('jth-foot-on');
@@ -29,7 +33,7 @@ function foot(){
 function run(){document.body.classList.add('jth-site');hdr();foot();}
 if(document.body)run();
 document.addEventListener('DOMContentLoaded',run);
-window.addEventListener('load',function(){hdr();foot()});
+window.addEventListener('load',function(){hdr();foot();var r=function(){fill(document.getElementById('jth-foot'),document.querySelector('footer.store-footer'))};r();setTimeout(r,2500)});
 var k=0,iv=setInterval(function(){if((hdr()&&foot())||++k>60)clearInterval(iv)},100);
 })();
 /* JTHRAH_SITE_V2_END */
