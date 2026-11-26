@@ -431,7 +431,7 @@ var k=0,iv=setInterval(function(){if((hdr()&&foot())||++k>60)clearInterval(iv)},
 
 /* جذرة — تحسين صفحة المنتج (كل المنتجات)
  * الأيقونات كلها تُرسم بالـ CSS (::before) فما تدخل في نص الصفحة ولا تأثر على قوقل
- * 1) «نظرة سريعة» تحت السعر: أهم المواصفات + الآفات المستهدفة + شارات الثقة
+ * 1) «نظرة سريعة» تحت السعر: أهم المواصفات + شارات الثقة (الآفات تظهر مرة وحدة في الوصف)
  * 2) ترتيب وصف المنتج: الآفات كشارات، المعلومات كجدول مواصفات، الاستخدام بخطوات مرقمة، السلامة ببطاقة تنبيه
  * يقرأ البيانات من وصف المنتج نفسه (jth-product-*) — ما يضيف أي معلومة من عنده */
 (function () {
@@ -452,6 +452,7 @@ var k=0,iv=setInterval(function(){if((hdr()&&foot())||++k>60)clearInterval(iv)},
     + '.jqf-pests>small{font-size:13px;font-weight:700;color:#5f7a6c;margin-inline-end:2px}'
     + '.jqf-chip{display:inline-flex;align-items:center;gap:5px;background:#0b2e1f;color:#fff;border-radius:999px;padding:6px 11px;font-size:13px;font-weight:700;line-height:1.3}'
     + '.jqf-chip.more{background:#e2b64c;color:#0b2e1f}.jqf-chip[data-e]::before,.jqf-trust i[data-e]::before{content:attr(data-e)}'
+    + '.jqf-min{padding:10px 14px}.jqf-min .jqf-trust{margin-top:0;padding-top:0;border-top:0}'
     + '.jqf-trust{margin-top:12px;padding-top:12px;border-top:1px dashed #d6e3db;display:flex;flex-wrap:wrap;gap:6px 14px}'
     + '.jqf-trust span{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:#173f2e}'
     + '.jqf-trust i{font-style:normal;width:22px;height:22px;border-radius:7px;background:#e6f0ea;display:grid;place-items:center;font-size:12px}'
@@ -490,14 +491,6 @@ var k=0,iv=setInterval(function(){if((hdr()&&foot())||++k>60)clearInterval(iv)},
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function txt(el) { return (el && el.textContent || '').replace(/\s+/g, ' ').trim(); }
 
-  /* «يكافح» للمبيدات، «يعالج» للأسمدة، «مناسب لـ» للبذور — حسب مسار التصنيف */
-  function pestLabel() {
-    var crumb = txt(document.querySelector('nav.breadcrumbs, .breadcrumbs, salla-breadcrumb, [class*=breadcrumb]')) + ' ' + txt(document.querySelector('.main-categoty'));
-    if (/سماد|أسمدة|اسمدة/.test(crumb)) return 'يعالج:';
-    if (/بذور|بذرة/.test(crumb)) return 'مناسب لـ:';
-    return 'يكافح:';
-  }
-
   function build() {
     if (!document.body.classList.contains('product-single')) return true;
     var lay = document.querySelector('.product__description .jth-product-layout') || document.querySelector('.jth-product-layout');
@@ -526,19 +519,22 @@ var k=0,iv=setInterval(function(){if((hdr()&&foot())||++k>60)clearInterval(iv)},
       var r = rows.find(function (x) { return re.test(x.k) && specs.indexOf(x) < 0; });
       if (r) specs.push(r);
     });
-    if (!specs.length && !pests.length) return true;
+    var hasTrust = !document.querySelector('.jpl-trust');
+    if (!specs.length && !hasTrust) return true;
 
+    /* الآفات تظهر مرة وحدة فقط (في الوصف) — هنا المواصفات وشارات الثقة */
     var box = document.createElement('section');
-    box.className = 'jqf';
+    box.className = 'jqf' + (specs.length ? '' : ' jqf-min');
     box.setAttribute('aria-label', 'نظرة سريعة على المنتج');
-    var MAXP = 5;
-    box.innerHTML = '<div class="jqf-hd"><b>نظرة سريعة</b><a role="button" tabindex="0" class="jqf-more">التفاصيل الكاملة</a></div>'
-      + (specs.length ? '<div class="jqf-specs">' + specs.map(function (s) { return '<div class="jqf-spec"><small>' + esc(s.k) + '</small><span>' + esc(s.v) + '</span></div>'; }).join('') + '</div>' : '')
-      + (pests.length ? '<div class="jqf-pests"><small>' + pestLabel() + '</small>' + pests.slice(0, MAXP).map(function (p) { return '<span class="jqf-chip"' + (p.e ? ' data-e="' + p.e + '"' : '') + '>' + esc(p.t) + '</span>'; }).join('') + (pests.length > MAXP ? '<span class="jqf-chip more">+' + (pests.length - MAXP) + '</span>' : '') + '</div>' : '')
-      + (document.querySelector('.jpl-trust') ? '' : '<div class="jqf-trust"><span><i data-e="✓"></i>مسجل رسمياً</span><span><i data-e="🚚"></i>توصيل لجميع المدن</span><span><i data-e="💳"></i>قسّطها مع تمارا وMISPAY</span></div>');
+    box.innerHTML = (specs.length
+        ? '<div class="jqf-hd"><b>نظرة سريعة</b><a role="button" tabindex="0" class="jqf-more">التفاصيل الكاملة</a></div>'
+          + '<div class="jqf-specs">' + specs.map(function (s) { return '<div class="jqf-spec"><small>' + esc(s.k) + '</small><span>' + esc(s.v) + '</span></div>'; }).join('') + '</div>'
+        : '')
+      + (hasTrust ? '<div class="jqf-trust"><span><i data-e="✓"></i>مسجل رسمياً</span><span><i data-e="🚚"></i>توصيل لجميع المدن</span><span><i data-e="💳"></i>قسّطها مع تمارا وMISPAY</span></div>' : '');
     price.parentNode.insertBefore(box, price.nextSibling);
 
     var more = box.querySelector('.jqf-more');
+    if (!more) return true;
     function go() {
       var tab = [].find.call(document.querySelectorAll('salla-tab-header, .s-tabs-header-item, [role=tab]'), function (t) { return /التفاصيل/.test(t.textContent); });
       try { if (tab) tab.click(); } catch (e) {}
