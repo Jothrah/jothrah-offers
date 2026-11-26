@@ -400,7 +400,7 @@ function foot(){
  var w=document.createElement('div');w.innerHTML=FOOT;var f=w.firstChild;
  if(nf){
   var b=f.querySelector('.jf-badges');
-  [].forEach.call(nf.querySelectorAll('img'),function(im){var a=(im.alt||'');if(/العمل الحر|منصة الأعمال/.test(a)&&!b.querySelector('img[alt="'+a+'"]')){var el=im.closest('a')||im;var c=el.cloneNode(true);if(c.tagName==='A'){c.target='_blank';c.rel='noopener'}b.appendChild(c)}});
+  [].forEach.call(nf.querySelectorAll('img'),function(im){var a=(im.alt||'');if(/العمل الحر|منصة الأعمال/.test(a)&&!b.querySelector('img[alt="'+a+'"]')){var el=im.closest('a')||im;var c=el.cloneNode(true);if(c.tagName==='A'){c.target='_blank';c.rel='noopener'}[].forEach.call(c.tagName==='IMG'?[c]:c.querySelectorAll('img'),function(x){var ds=x.getAttribute('data-src');if(ds)x.src=ds;x.className='';x.style.opacity='1'});b.appendChild(c)}});
   var pays=[].filter.call(nf.querySelectorAll('img'),function(im){return /_mini\.png/.test(im.src)});
   if(pays.length){var pr=f.querySelector('.jf-pays');pr.innerHTML='';pays.forEach(function(im){var c=document.createElement('img');c.src=im.src;c.alt=im.alt||'';c.loading='lazy';pr.appendChild(c)})}
   nf.parentNode.insertBefore(f,nf);

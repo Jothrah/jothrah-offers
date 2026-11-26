@@ -51,6 +51,12 @@ body:not(.jth-off).product-single :is(.product-entry h1,h1.product-title,.produc
 body:not(.jth-off).product-single :is(.product-price,.total-price,.price-wrapper) :is(.total-price,h4,salla-money,[class*=amount]){color:#0b2e1f!important;font-weight:800!important}
 body:not(.jth-off).product-single salla-add-product-button .s-button-btn,body:not(.jth-off).product-single .sticky-product-bar .s-button-btn{min-height:50px}
 body:not(.jth-off).product-single :is(.s-slider-container,.product-slider,.details-slider){background:#fff;border-radius:18px}
+body:not(.jth-off).product-single .main-content .price :is(.total-price,salla-money){font-size:clamp(26px,2.6vw,32px)!important;font-weight:800!important;color:#0b2e1f!important}
+body:not(.jth-off).product-single .main-content .price :is(.before-price,del){color:#8a9a92!important;font-size:16px!important}
+body:not(.jth-off).product-single .main-content .product-entry__sub-title{display:block;width:fit-content;max-width:100%;background:#e6f0ea;color:#2f6b4c!important;border-radius:999px;padding:3px 12px;font-size:13px!important;font-weight:700}
+body:not(.jth-off).product-single [id^=product-]>.sidebar{background:#fff;border:1px solid #e3ece6;border-radius:20px}
+body:not(.jth-off).product-single [id^=product-]>.sidebar .promotion-title{background:#e2b64c!important;color:#0b2e1f!important;font-weight:700;border-radius:10px}
+body:not(.jth-off).product-single :is(salla-installment,.s-installment) :is(div,section){border-radius:14px}
 /* السلة */
 body:not(.jth-off).cart :is(.cart-item,salla-cart-item,form[id^=item]),body:not(.jth-off).cart .cart-summary,body:not(.jth-off).cart :is(.s-cart-summary,section.cart-section>div){border-radius:16px!important}
 /* JTHRAH_SITE_V2_PAGES_END */
