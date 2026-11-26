@@ -377,7 +377,7 @@ window.__JTH_CHAT_V2_ON__=true;(function(){if(document.getElementById("jth-chat-
 /* JTHRAH_PRODUCT_LANDING_END */
 
 /* JTHRAH_HOME_V2_START v1 — الواجهة الجديدة للصفحة الرئيسية من offers.jothrah.com/store/home-v2.js (للرجوع احذف هذا البلوك و JTHRAH_HOME_V2_HIDE في CSS) */
-(function(){if(!/^\/(ar|en)?\/?$/.test(location.pathname))return;var s=document.createElement('script');s.src='https://offers.jothrah.com/store/home-v2.js?v=4';s.async=true;s.onerror=function(){document.body.classList.add('jth-v2-off')};(document.head||document.documentElement).appendChild(s);})();
+(function(){if(!/^\/(ar|en)?\/?$/.test(location.pathname))return;var s=document.createElement('script');s.src='https://offers.jothrah.com/store/home-v2.js?v=5';s.async=true;s.onerror=function(){document.body.classList.add('jth-v2-off')};(document.head||document.documentElement).appendChild(s);})();
 /* JTHRAH_HOME_V2_END */
 
 /* JTHRAH_SITE_V2_START — هيدر وفوتر الثيم الجديد لكل الصفحات (للرجوع: احذف هذا البلوك وبلوكات SITE_V2 في CSS) */
