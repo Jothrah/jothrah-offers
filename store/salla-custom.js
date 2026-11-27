@@ -430,7 +430,7 @@ var k=0,iv=setInterval(function(){if((hdr()&&foot())||++k>60)clearInterval(iv)},
 /* JTHRAH_SITE_V2_END */
 
 /* جذرة — تحسين صفحة المنتج (كل المنتجات)
- * الأيقونات كلها تُرسم بالـ CSS (::before) فما تدخل في نص الصفحة ولا تأثر على قوقل
+ * الأيقونات SVG من مكتبة جذرة الموحدة (jth-icons.js) بدون نص، فما تأثر على قوقل
  * 1) «نظرة سريعة» تحت السعر: أهم المواصفات + شارات الثقة (الآفات تظهر مرة وحدة في الوصف)
  * 2) ترتيب وصف المنتج: الآفات كشارات، المعلومات كجدول مواصفات، الاستخدام بخطوات مرقمة، السلامة ببطاقة تنبيه
  * يقرأ البيانات من وصف المنتج نفسه (jth-product-*) — ما يضيف أي معلومة من عنده */
@@ -451,7 +451,7 @@ var k=0,iv=setInterval(function(){if((hdr()&&foot())||++k>60)clearInterval(iv)},
     + '.jqf-pests{margin-top:10px;display:flex;flex-wrap:wrap;align-items:center;gap:6px}'
     + '.jqf-pests>small{font-size:13px;font-weight:700;color:#5f7a6c;margin-inline-end:2px}'
     + '.jqf-chip{display:inline-flex;align-items:center;gap:5px;background:#0b2e1f;color:#fff;border-radius:999px;padding:6px 11px;font-size:13px;font-weight:700;line-height:1.3}'
-    + '.jqf-chip.more{background:#e2b64c;color:#0b2e1f}.jqf-chip[data-e]::before,.jqf-trust i[data-e]::before{content:attr(data-e)}'
+    + '.jqf-chip.more{background:#e2b64c;color:#0b2e1f}'
     + '.jqf-min{padding:10px 14px}.jqf-min .jqf-trust{margin-top:0;padding-top:0;border-top:0}'
     + '.jqf-trust{margin-top:12px;padding-top:12px;border-top:1px dashed #d6e3db;display:flex;flex-wrap:wrap;gap:6px 14px}'
     + '.jqf-trust span{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:#173f2e}'
@@ -463,8 +463,9 @@ var k=0,iv=setInterval(function(){if((hdr()&&foot())||++k>60)clearInterval(iv)},
     + '.jth-product-layout .jth-product-description{font-size:15px;line-height:1.95;margin:0 0 6px;text-align:right!important;text-justify:auto!important;letter-spacing:0!important;word-spacing:normal!important}'
     + '.jth-product-layout .jth-product-title{font-size:17px!important;font-weight:800!important;color:#0b2e1f!important;margin:24px 0 12px!important;padding:0 12px 0 0!important;border-right:4px solid #e2b64c;line-height:1.5!important;text-align:right!important}'
     + '.jth-product-layout .jth-product-pests{display:flex!important;flex-wrap:wrap!important;gap:8px!important;grid-template-columns:none!important;margin:0!important}'
-    + '.jth-product-layout .jth-product-pest{display:inline-flex!important;align-items:center;gap:6px;width:auto!important;margin:0!important;background:#eef5f0!important;border:1px solid #d6e3db!important;color:#0b2e1f!important;border-radius:999px!important;padding:8px 14px!important;font-size:14px!important;font-weight:700!important;line-height:1.3!important;text-align:right!important;box-shadow:none!important}'
-    + '.jth-product-layout .jth-product-pest[data-e]::before{content:attr(data-e);font-size:15px}'
+    + '.jth-product-layout .jth-product-pest{display:inline-flex!important;align-items:center;gap:6px;width:auto!important;margin:0!important;background:#eef5f0!important;border:1px solid #d6e3db!important;color:#0b2e1f!important;border-radius:999px!important;padding:5px 14px 5px 10px!important;font-size:14px!important;font-weight:700!important;line-height:1.3!important;text-align:right!important;box-shadow:none!important}'
+    + '.jth-product-layout .jth-product-pest .jpi{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:none;margin-inline-start:-6px}'
+    + '.jth-product-layout .jth-product-pest .jpi svg{width:22px;height:22px;display:block}'
     + '.jth-product-layout .jth-product-info{display:grid!important;grid-template-columns:1fr 1fr;border:1px solid #e3ece6!important;border-radius:14px!important;overflow:hidden;background:#fff!important;padding:0!important;gap:0!important;margin:0!important;box-shadow:none!important}'
     + '.jth-product-layout .jth-product-row{display:flex!important;flex-direction:column;gap:2px;padding:10px 14px!important;margin:0!important;border:0!important;border-bottom:1px solid #eef3f0!important;background:#fff!important;text-align:right!important}'
     + '.jth-product-layout .jth-product-row:nth-child(4n+1),.jth-product-layout .jth-product-row:nth-child(4n+2){background:#f7faf8!important}'
@@ -478,18 +479,20 @@ var k=0,iv=setInterval(function(){if((hdr()&&foot())||++k>60)clearInterval(iv)},
     + '.jth-product-layout .jth-product-safety p{margin:6px 0 0!important;font-size:14px!important;line-height:1.9!important}'
     + '@media (max-width:640px){.jth-product-layout .jth-product-info{grid-template-columns:1fr}.jth-product-layout .jth-product-row{flex-direction:row;justify-content:space-between;align-items:baseline;gap:10px}.jth-product-layout .jth-product-row:nth-child(n){background:#fff!important}.jth-product-layout .jth-product-row:nth-child(odd){background:#f7faf8!important}.jth-product-layout .jth-product-row span{text-align:left}}';
 
-  var EMOJI = [
-    [/نمل|أرضة|ارضة/, '🐜'], [/صرص|صراص/, '🪳'], [/(^|\s)(ال)?بق(\s|$)|قمل/, '🪲'], [/عقرب|عقارب/, '🦂'], [/عنكب|عناكب/, '🕷️'],
-    [/بعوض|ناموس/, '🦟'], [/ذباب|ذبابة/, '🪰'], [/فئر|فأر|قوارض|جرذ/, '🐀'], [/برغوث|براغيث|قراد/, '🦗'],
-    [/فطر|بياض|عفن|تبقع|صدأ|لفحة|ذبول/, '🍄'], [/حشائش|أعشاب|اعشاب/, '🌾'], [/اصفرار|نقص|شحوب/, '🍂'],
-    [/(^|\s)(ال)?من(\s|$)|تربس|حلم|أكاروس|حشرات/, '🐞'], [/نيماتود/, '🪱'], [/سوس/, '🐛']
-  ];
-  function emojiFor(t) { for (var i = 0; i < EMOJI.length; i++) if (EMOJI[i][0].test(t)) return EMOJI[i][1]; return ''; }
-
   var SPEC_ORDER = [/المادة الفعالة|المواد الفعالة/, /التركيز/, /الهيئة|التركيبة/, /نوع (المبيد|السماد|المنتج)/, /حجم العبوة|وزن العبوة|العبوة/, /بلد (الصنع|الإنتاج|المنشأ)/];
 
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function txt(el) { return (el && el.textContent || '').replace(/\s+/g, ' ').trim(); }
+
+  var ICONS_URL = 'https://offers.jothrah.com/store/jth-icons.js?v=1';
+  function loadIcons(cb) {
+    if (window.JTH_ICONS) return cb();
+    document.addEventListener('jth-icons-ready', function () { cb(); }, { once: true });
+    if (!document.querySelector('script[data-jth-icons]')) {
+      var s = document.createElement('script'); s.src = ICONS_URL; s.async = true; s.setAttribute('data-jth-icons', '1');
+      document.head.appendChild(s);
+    }
+  }
 
   function build() {
     if (!document.body.classList.contains('product-single')) return true;
@@ -504,9 +507,19 @@ var k=0,iv=setInterval(function(){if((hdr()&&foot())||++k>60)clearInterval(iv)},
     if (!price) return false;
     if (!lay) return true;
 
-    var pests = [].map.call(lay.querySelectorAll('.jth-product-pest'), function (p) {
-      var t = txt(p); var e = emojiFor(t); if (e) p.setAttribute('data-e', e); return { t: t, e: e };
-    }).filter(function (p) { return p.t; });
+    /* أيقونات الآفات في الوصف: نفس أيقونات الصفحة الرئيسية والأقسام (مكتبة موحدة) */
+    if (!lay.getAttribute('data-jpi')) {
+      lay.setAttribute('data-jpi', '1');
+      loadIcons(function () {
+        var IC = window.JTH_ICONS; if (!IC) return;
+        lay.querySelectorAll('.jth-product-pest').forEach(function (p) {
+          if (p.querySelector('.jpi')) return;
+          var ic = IC.get(txt(p)); if (!ic) return;
+          var i = document.createElement('i'); i.className = 'jpi'; i.setAttribute('aria-hidden', 'true');
+          i.style.background = ic.bg; i.innerHTML = ic.svg; p.insertBefore(i, p.firstChild);
+        });
+      });
+    }
 
     var rows = [].map.call(lay.querySelectorAll('.jth-product-row'), function (r) {
       return { k: txt(r.querySelector('strong')).replace(/[:：]\s*$/, ''), v: txt(r.querySelector('span')) };
@@ -530,7 +543,7 @@ var k=0,iv=setInterval(function(){if((hdr()&&foot())||++k>60)clearInterval(iv)},
         ? '<div class="jqf-hd"><b>نظرة سريعة</b><a role="button" tabindex="0" class="jqf-more">التفاصيل الكاملة</a></div>'
           + '<div class="jqf-specs">' + specs.map(function (s) { return '<div class="jqf-spec"><small>' + esc(s.k) + '</small><span>' + esc(s.v) + '</span></div>'; }).join('') + '</div>'
         : '')
-      + (hasTrust ? '<div class="jqf-trust"><span><i data-e="✓"></i>مسجل رسمياً</span><span><i data-e="🚚"></i>توصيل لجميع المدن</span><span><i data-e="💳"></i>قسّطها مع تمارا وMISPAY</span></div>' : '');
+      + (hasTrust ? '<div class="jqf-trust"><span><i><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#173f2e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>مسجل رسمياً</span><span><i><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#173f2e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6h12v10H2zM14 10h4l3 3v3h-7z"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg></i>توصيل لجميع المدن</span><span><i><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#173f2e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="2"/><path d="M2.5 10h19M6 15h4"/></svg></i>قسّطها مع تمارا وMISPAY</span></div>' : '');
     price.parentNode.insertBefore(box, price.nextSibling);
 
     var more = box.querySelector('.jqf-more');
@@ -543,6 +556,114 @@ var k=0,iv=setInterval(function(){if((hdr()&&foot())||++k>60)clearInterval(iv)},
     }
     more.addEventListener('click', go);
     more.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+    return true;
+  }
+
+  var tries = 0;
+  (function loop() { if (build() || ++tries > 40) return; setTimeout(loop, 250); })();
+})();
+
+/* جذرة — أيقونات الأقسام الفرعية في صفحات التصنيفات (كل التصنيفات)
+ * - نفس أيقونات الصفحة الرئيسية (مكتبة jth-icons.js الموحدة): كل آفة لها أيقونة وحدة
+ * - سطر واحد في كل المقاسات؛ لو ما وسع يتحرك يمين ويسار ببطء، ويتوقف لما العميل يلمسه أو يسحبه
+ * - الأيقونات SVG بدون نص، فما تأثر على قوقل، والروابط نفسها باقية */
+(function () {
+  if (window.__jthCat2) return;
+  window.__jthCat2 = 1;
+  var ICONS_URL = 'https://offers.jothrah.com/store/jth-icons.js?v=1';
+
+  var CSS = ''
+    + '.sub-cat-slider.jcat-on{display:none!important}'
+    + '.jcat-wrap{position:relative;margin:18px auto 6px;max-width:1240px}'
+    + '.jcat{display:flex;flex-wrap:nowrap;justify-content:center;gap:10px;overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:4px 4px 10px}'
+    + '.jcat::-webkit-scrollbar{display:none}'
+    + '.jcat.jcat-scroll{justify-content:flex-start}'
+    + '.jcat a{flex:0 0 132px;display:flex;flex-direction:column;align-items:center;gap:9px;background:#fff;border:1px solid #e3ece6;border-radius:18px;padding:14px 8px 12px;text-decoration:none!important;color:#0b2e1f!important;text-align:center;transition:border-color .15s,box-shadow .15s;min-height:128px;box-sizing:border-box}'
+    + '.jcat a:hover{border-color:#e2b64c;box-shadow:0 6px 18px rgba(11,46,31,.10)}'
+    + '.jcat a:focus-visible{outline:3px solid #e2b64c;outline-offset:2px}'
+    + '.jcat i{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;flex:none;font-style:normal}'
+    + '.jcat i svg{width:46px;height:46px;display:block}'
+    + '.jcat span{font-size:13.5px;font-weight:700;line-height:1.45}'
+    + '@media (max-width:640px){.jcat{gap:8px}.jcat a{flex-basis:108px;min-height:116px;padding:12px 6px 10px;border-radius:16px}.jcat i{width:54px;height:54px}.jcat i svg{width:40px;height:40px}.jcat span{font-size:12.5px}}';
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  function loadIcons(cb) {
+    if (window.JTH_ICONS) return cb();
+    document.addEventListener('jth-icons-ready', function () { cb(); }, { once: true });
+    if (!document.querySelector('script[data-jth-icons]')) {
+      var s = document.createElement('script'); s.src = ICONS_URL; s.async = true; s.setAttribute('data-jth-icons', '1');
+      s.onerror = function () { cb(); };
+      document.head.appendChild(s);
+    }
+  }
+
+  /* حركة تلقائية بطيئة ذهاب وعودة؛ تتوقف عند اللمس/السحب/الماوس/التركيز وترجع بعد ثواني */
+  function autoScroll(row, wrap) {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var dir = 1, pos = 0, paused = false, resumeT = 0, visible = true, ours = false, last = 0;
+    var SPEED = 18; /* بكسل في الثانية */
+    function maxScroll() { return row.scrollWidth - row.clientWidth; }
+    function getPos() { return Math.abs(row.scrollLeft); }
+    function setPos(v) { ours = true; row.scrollLeft = (getComputedStyle(row).direction === 'rtl' ? -1 : 1) * v; }
+    function pause() { paused = true; clearTimeout(resumeT); }
+    function resumeLater() { clearTimeout(resumeT); resumeT = setTimeout(function () { pos = getPos(); paused = false; }, 3500); }
+    ['pointerdown', 'touchstart', 'wheel', 'mouseenter', 'focusin'].forEach(function (ev) { row.addEventListener(ev, pause, { passive: true }); });
+    ['pointerup', 'touchend', 'mouseleave', 'focusout'].forEach(function (ev) { row.addEventListener(ev, resumeLater, { passive: true }); });
+    row.addEventListener('scroll', function () { if (ours) { ours = false; return; } pos = getPos(); if (!paused) { pause(); resumeLater(); } }, { passive: true });
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (en) { visible = en[0].isIntersecting; }).observe(row);
+    function tick(t) {
+      var dt = last ? Math.min(0.1, (t - last) / 1000) : 0; last = t;
+      var m = maxScroll();
+      if (m > 4 && !paused && visible && !document.hidden) {
+        pos += dir * SPEED * dt;
+        if (pos >= m) { pos = m; dir = -1; }
+        if (pos <= 0) { pos = 0; dir = 1; }
+        setPos(pos);
+      }
+      requestAnimationFrame(tick);
+    }
+    setTimeout(function () { requestAnimationFrame(tick); }, 1500);
+  }
+
+  function build() {
+    var slider = document.querySelector('.sub-cat-slider');
+    if (!slider) return document.readyState === 'complete';
+    if (slider.classList.contains('jcat-on')) return true;
+    var seen = {};
+    var links = [].slice.call(slider.querySelectorAll('.sub-cat-icon a[href]')).filter(function (a) {
+      var h = a.getAttribute('href'); if (seen[h]) return false; seen[h] = 1; return true;
+    });
+    if (!links.length) return false;
+    slider.classList.add('jcat-on');
+    if (!document.getElementById('jcat-css')) {
+      var st = document.createElement('style'); st.id = 'jcat-css'; st.textContent = CSS; document.head.appendChild(st);
+    }
+    loadIcons(function () {
+      var IC = window.JTH_ICONS;
+      var wrap = document.createElement('div'); wrap.className = 'jcat-wrap';
+      var row = document.createElement('nav'); row.className = 'jcat';
+      row.setAttribute('aria-label', document.documentElement.lang === 'en' ? 'Subcategories' : 'الأقسام الفرعية');
+      row.innerHTML = links.map(function (a) {
+        var t = (a.textContent || '').replace(/\s+/g, ' ').trim();
+        var ic = IC && IC.get(t);
+        var img = a.querySelector('img');
+        var src = img && (img.getAttribute('data-src') || img.getAttribute('src'));
+        var inner = ic ? '<i aria-hidden="true" style="background:' + ic.bg + '">' + ic.svg + '</i>'
+          : (src && !/placeholder|data:image/i.test(src) ? '<i aria-hidden="true" style="background:#fff;overflow:hidden"><img src="' + esc(src) + '" alt="" style="width:100%;height:100%;object-fit:cover"></i>'
+          : '<i aria-hidden="true" style="background:#e3efdc">' + ((IC && IC.svg['آفات الزراعة']) || '') + '</i>');
+        return '<a href="' + esc(a.getAttribute('href')) + '">' + inner + '<span>' + esc(t) + '</span></a>';
+      }).join('');
+      wrap.appendChild(row);
+      slider.parentNode.insertBefore(wrap, slider.nextSibling);
+      function fit() {
+        var over = row.scrollWidth > row.clientWidth + 4;
+        row.classList.toggle('jcat-scroll', over);
+      }
+      fit();
+      window.addEventListener('resize', fit, { passive: true });
+      autoScroll(row, wrap);
+    });
     return true;
   }
 
