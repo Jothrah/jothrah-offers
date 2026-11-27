@@ -73,7 +73,7 @@ var D={
 "جذرة للأسمدة والمبيدات والبذور":"Jothrah for fertilizers, pesticides and seeds","انستقرام":"Instagram","إكس":"X","سناب شات":"Snapchat","تيك توك":"TikTok","فيسبوك":"Facebook"
 };
 var SEL='#jth-home,#jth-foot,.jth-nav,.jth-hsearch-t,.jth-hsearch';
-var CSS='#jth-home,#jth-foot{direction:ltr!important;text-align:left!important}#jth-home h1,#jth-home h2,#jth-home p,#jth-foot p{text-align:inherit}';
+var CSS='#jth-home,#jth-foot{direction:ltr!important;text-align:left!important}#jth-home h1,#jth-home h2,#jth-home p,#jth-foot p{text-align:inherit}.jth-nav a{padding-left:8px!important;padding-right:8px!important;font-size:14px!important;white-space:nowrap}.language-btn>span:first-child{display:none!important}';
 var st=document.createElement('style');st.id='jth-i18n-en';st.textContent=CSS;document.head.appendChild(st);
 function tr(s){var k=s.trim();return D.hasOwnProperty(k)?s.replace(k,D[k]):null}
 function run(root){
