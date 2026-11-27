@@ -574,8 +574,8 @@ var k=0,iv=setInterval(function(){if((hdr()&&foot())||++k>60)clearInterval(iv)},
 
   var CSS = ''
     + '.sub-cat-slider.jcat-on{display:none!important}'
-    + '.jcat-wrap{position:relative;margin:18px auto 6px;max-width:1240px}'
-    + '.jcat{display:flex;flex-wrap:nowrap;justify-content:center;gap:10px;overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:4px 4px 10px}'
+    + '.jcat-wrap{position:relative;margin:18px 0 6px}'
+    + '.jcat{display:flex;flex-wrap:nowrap;justify-content:flex-start;gap:10px;overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:4px 4px 10px}'
     + '.jcat::-webkit-scrollbar{display:none}'
     + '.jcat.jcat-scroll{justify-content:flex-start}'
     + '.jcat a{flex:0 0 132px;display:flex;flex-direction:column;align-items:center;gap:9px;background:#fff;border:1px solid #e3ece6;border-radius:18px;padding:14px 8px 12px;text-decoration:none!important;color:#0b2e1f!important;text-align:center;transition:border-color .15s,box-shadow .15s;min-height:128px;box-sizing:border-box}'
