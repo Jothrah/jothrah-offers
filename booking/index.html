@@ -84,16 +84,73 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
 footer a{color:#fff;text-decoration:none;font-weight:700}
 @media (max-width:900px){.grid{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:600px){.wrap{padding:0 16px}.row{grid-template-columns:minmax(0,1fr)}.card{padding:18px;border-radius:20px}.hero-ic{width:70px;height:70px}.hero-in{align-items:flex-start}.hd nav a.store{display:none}.loc button{width:100%;justify-content:center}}
+/* ===== هيدر المتجر ===== */
+.tick{background:#005430;color:#fff;height:42px;overflow:hidden;display:flex;align-items:center;position:relative}
+.tick-track{display:flex;gap:56px;white-space:nowrap;animation:tk 48s linear infinite;padding-inline-start:24px;will-change:transform}
+.tick-track span{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500}
+.tick-track svg{flex:none;opacity:.9}
+.tick:hover .tick-track{animation-play-state:paused}
+@keyframes tk{from{transform:translateX(0)}to{transform:translateX(50%)}}
+header.sh{background:#0b2e1f;color:#fff;position:sticky;top:0;z-index:30;box-shadow:0 6px 18px rgba(11,46,31,.18)}
+.sh-in{display:flex;align-items:center;gap:14px;min-height:68px}
+.sh-menu{display:inline-flex;align-items:center;gap:8px;background:none;border:0;color:#fff;font:inherit;font-size:15px;font-weight:700;cursor:pointer;padding:8px 4px;white-space:nowrap}
+.sh-logo img{height:40px;width:auto;display:block}
+.sh-nav{display:flex;align-items:center;gap:2px;margin-inline-start:8px}
+.sh-nav a{color:#fff;text-decoration:none;font-size:15px;padding:11px 12px;border-radius:10px;white-space:nowrap}
+.sh-nav a:hover{background:#173f2e}
+.sh-nav a.on{background:#e2b64c;color:#0b2e1f;font-weight:700}
+.sh-end{display:flex;align-items:center;gap:10px;margin-inline-start:auto}
+.sh-search{display:flex;align-items:center;background:#173f2e;border-radius:12px;height:44px;width:250px;padding:0 12px;gap:8px}
+.sh-search input{flex:1;min-width:0;background:none;border:0;color:#fff;font:inherit;font-size:15px;outline:none;height:100%;min-height:0;padding:0}
+.sh-search input::placeholder{color:#b9cfc3}
+.sh-search button{background:none;border:0;color:#fff;cursor:pointer;display:grid;place-items:center;padding:0}
+.sh-ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;text-decoration:none}
+.sh-ic.acc{background:#173f2e;color:#fff}
+.sh-ic.cart{background:#e2b64c;color:#0b2e1f}
+.drawer{position:fixed;inset:0;z-index:60;display:none}
+.drawer.open{display:block}
+.drawer-bg{position:absolute;inset:0;background:rgba(0,0,0,.55)}
+.drawer-pn{position:absolute;top:0;bottom:0;right:0;width:min(320px,86vw);background:#0b2e1f;color:#fff;padding:18px;display:flex;flex-direction:column;gap:4px;overflow:auto}
+.drawer-pn .x{align-self:flex-start;background:#173f2e;border:0;color:#fff;width:40px;height:40px;border-radius:10px;font-size:22px;cursor:pointer;margin-bottom:10px}
+.drawer-pn a{color:#fff;text-decoration:none;font-size:16px;font-weight:700;padding:13px 12px;border-radius:10px}
+.drawer-pn a.on{background:#e2b64c;color:#0b2e1f}
+.drawer-pn hr{border:0;border-top:1px solid #234d3b;margin:8px 0}
+.drawer-pn a.sm{font-weight:500;font-size:15px;color:#d5e4dc}
+/* ===== فوتر المتجر ===== */
+footer.sf{background:#0b2e1f;color:#b9cfc3;padding:40px 0 0;font-size:14.5px}
+.sf-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:28px}
+.sf-grid h3{color:#fff;font-size:16px;margin:0 0 12px}
+.sf-grid ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.sf-grid a{color:#d5e4dc;text-decoration:none}
+.sf-grid a:hover{color:#e2b64c}
+.sf-about img{height:44px;width:auto;margin-bottom:12px}
+.sf-about p{margin:0 0 14px;color:#d5e4dc}
+.sf-wa{display:inline-flex;align-items:center;gap:8px;background:#e2b64c;color:#0b2e1f!important;font-weight:700;border-radius:10px;padding:10px 16px}
+.sf-bot{border-top:1px solid #234d3b;margin-top:30px;padding:16px 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:13.5px}
+@media (max-width:1100px){.sh-nav{display:none}}
+@media (max-width:900px){.sf-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:700px){.sh-search{display:none}.sh-logo img{height:34px}.sh-in{gap:8px;min-height:60px}.tick{height:36px}.tick-track span{font-size:13px}}
+@media (max-width:560px){.sf-grid{grid-template-columns:1fr}.sh-menu span{display:none}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
-<header>
-<div class="wrap hd">
-<a href="https://jothrah.com/ar" aria-label="متجر جذرة"><img src="/assets/logo-light.png" alt="جذرة للأسمدة والمبيدات والبذور" width="160" height="40"></a>
-<nav><a class="store" href="https://jothrah.com/ar">المتجر</a><a class="wa" href="https://wa.me/966501211056">واتساب</a></nav>
+<div class="tick" aria-label="إعلانات المتجر"><div class="tick-track"><span>🌱 موسم الزراعة الشتوي: استخدم كود JOTH10 واحصل على خصم خاص، متاح فقط عند الدفع عبر وسائل دفع محددة.</span><span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h11v10H3z"/><path d="M14 9h4l3 3v4h-7"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>شحن سريع ومضمون</span><span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>توصيل لجميع مناطق المملكة</span><span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>جميع المنتجات في متجرنا مسجلة لدى الجهات الرسمية، يتم استخدام المنتجات وفق التعليمات والإرشادات الخاصة بكل منتج</span><span>🌱 موسم الزراعة الشتوي: استخدم كود JOTH10 واحصل على خصم خاص، متاح فقط عند الدفع عبر وسائل دفع محددة.</span><span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h11v10H3z"/><path d="M14 9h4l3 3v4h-7"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>شحن سريع ومضمون</span><span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>توصيل لجميع مناطق المملكة</span><span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>جميع المنتجات في متجرنا مسجلة لدى الجهات الرسمية، يتم استخدام المنتجات وفق التعليمات والإرشادات الخاصة بكل منتج</span></div></div>
+<header class="sh">
+<div class="wrap sh-in">
+<button class="sh-menu" type="button" id="menuBtn" aria-label="القائمة" aria-expanded="false"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span>القائمة</span></button>
+<a class="sh-logo" href="https://jothrah.com/ar" aria-label="متجر جذرة"><img src="/assets/logo-light.png" alt="جذرة للأسمدة والمبيدات والبذور" width="160" height="40"></a>
+<nav class="sh-nav" aria-label="أقسام المتجر"><a href="https://jothrah.com/ar/PublicHealth-Insecticide/c1409105685">الصحة العامة</a><a href="https://jothrah.com/ar/Pesticides/c199643191">المبيدات الزراعية</a><a href="https://jothrah.com/ar/Fertilizers/c63252591">الأسمدة</a><a href="https://jothrah.com/ar/Seeds/c2074406823">البذور</a><a class="on" href="https://offers.jothrah.com/booking/" aria-current="page">رش المنازل</a></nav>
+<div class="sh-end">
+<form class="sh-search" action="https://jothrah.com/ar/search" method="get" role="search"><input type="search" name="q" placeholder="ابحث عن منتج أو حشرة…" aria-label="ابحث في المتجر"><button type="submit" aria-label="بحث"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button></form>
+<a class="sh-ic acc" href="https://jothrah.com/ar/account/orders" aria-label="حسابي"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></a>
+<a class="sh-ic cart" href="https://jothrah.com/ar/cart" aria-label="السلة"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.4 11h11.2L21 8H6.2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg></a>
+</div>
 </div>
 </header>
+<div class="drawer" id="drawer" aria-hidden="true"><div class="drawer-bg" data-x></div><div class="drawer-pn" role="dialog" aria-label="القائمة"><button class="x" type="button" data-x aria-label="إغلاق">×</button><a href="https://jothrah.com/ar/PublicHealth-Insecticide/c1409105685">الصحة العامة</a><a href="https://jothrah.com/ar/Pesticides/c199643191">المبيدات الزراعية</a><a href="https://jothrah.com/ar/Fertilizers/c63252591">الأسمدة</a><a href="https://jothrah.com/ar/Seeds/c2074406823">البذور</a><a class="on" href="https://offers.jothrah.com/booking/">رش المنازل</a><hr><a class="sm" href="https://jothrah.com/ar/search">ابحث في المتجر</a><a class="sm" href="https://jothrah.com/ar/cart">السلة</a><a class="sm" href="https://jothrah.com/ar/blog">المدونة</a><a class="sm" href="https://wa.me/966501211056">تواصل واتساب</a></div></div>
+
+
 
 <section class="hero">
 <div class="wrap hero-in">
@@ -174,7 +231,15 @@ footer a{color:#fff;text-decoration:none;font-weight:700}
 </div>
 </main>
 
-<footer><div class="wrap"><span>© 2026 جذرة. خدمة رش المنازل داخل مدينة الرياض.</span><a href="https://jothrah.com/ar">ارجع للمتجر</a></div></footer>
+<footer class="sf">
+<div class="wrap sf-grid">
+<div class="sf-about"><img src="/assets/logo-light.png" alt="جذرة" width="176" height="44"><p>مبيدات وأسمدة وبذور أصلية ومسجلة، مع إرشاد من مهندس زراعي قبل وبعد الشراء.</p><a class="sf-wa" href="https://wa.me/966501211056">راسلنا على الواتساب</a></div>
+<div><h3>الأقسام</h3><ul><li><a href="https://jothrah.com/ar/PublicHealth-Insecticide/c1409105685">الصحة العامة</a></li><li><a href="https://jothrah.com/ar/Pesticides/c199643191">المبيدات الزراعية</a></li><li><a href="https://jothrah.com/ar/Fertilizers/c63252591">الأسمدة</a></li><li><a href="https://jothrah.com/ar/Seeds/c2074406823">البذور</a></li><li><a href="https://offers.jothrah.com/booking/">رش المنازل</a></li><li><a href="https://jothrah.com/ar/blog">المدونة</a></li></ul></div>
+<div><h3>المساعدة</h3><ul><li><a href="https://jothrah.com/ar/about/page-66879429">من نحن</a></li><li><a href="https://jothrah.com/ar/shipping-delivery/page-597037531">الشحن والتوصيل</a></li><li><a href="https://jothrah.com/ar/exchangereturn/page-1331191589">سياسة الاستبدال والاسترجاع</a></li><li><a href="https://jothrah.com/ar/privacypolicy/page-1513284553">سياسة الخصوصية وشروط الاستخدام</a></li><li><a href="https://jothrah.com/ar/contact-us/page-1937329587">اتصل بنا</a></li></ul></div>
+<div><h3>تواصل معنا</h3><ul><li><a href="https://wa.me/966501211056" dir="ltr">+966 50 121 1056</a></li><li>اتصال: <a href="tel:+966547338905" dir="ltr">+966 54 733 8905</a></li><li><a href="mailto:info@jothrah.com">info@jothrah.com</a></li><li>المملكة العربية السعودية - الرياض</li></ul></div>
+</div>
+<div class="wrap sf-bot"><span>وثيقة العمل الحر FL-205735845</span><span>© 2026 جذرة. جميع الحقوق محفوظة.</span></div>
+</footer>
 
 <script>
 (function(){
@@ -227,6 +292,9 @@ function done(ref,d){
  box.scrollIntoView({behavior:'smooth',block:'start'});
 }
 })();
+</script>
+<script>
+(function(){var d=document.getElementById('drawer'),b=document.getElementById('menuBtn');function o(v){d.classList.toggle('open',v);d.setAttribute('aria-hidden',v?'false':'true');b.setAttribute('aria-expanded',v?'true':'false');document.body.style.overflow=v?'hidden':''}b.addEventListener('click',function(){o(true)});d.addEventListener('click',function(e){if(e.target.hasAttribute('data-x'))o(false)});document.addEventListener('keydown',function(e){if(e.key==='Escape')o(false)});})();
 </script>
 </body>
 </html>
